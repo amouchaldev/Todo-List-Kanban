@@ -1,0 +1,168 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+:root {
+  --grey: #edf2f7;
+  --light-grey: #f7fafc;
+  --dark: #1a202c;
+  /* blue */
+  --light-blue: #bee3f8;
+  --blue: #2a4365;
+  /* orange */
+  --light-orange: #ffe38a;
+  --orange: #e09103;
+  /* green */
+  --light-green: #c6f6d5;
+  --green: #22543d;
+}
+
+body {
+  font-family: "Roboto Mono", monospace;
+  /* font-family: 'Oxygen', sans-serif; */
+  color: var(--dark);
+  padding-bottom: 4rem;
+  background-image: linear-gradient(-20deg, #00cdac 0%, #8ddad5 100%);
+}
+main {
+  width: 90%;
+  margin: auto;
+}
+
+main > h2 {
+  margin: 1.5rem 0;
+  font-size: 3.5rem;
+  text-align: center;
+  /* color: transparent;
+  background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
+  background-clip: text;
+  -moz-background-clip: text;
+  -webkit-background-clip: text;
+  -ms-background-clip: text; */
+  color: #fff;
+}
+
+main > section {
+  display: flex;
+  justify-content: space-between;
+}
+main article {
+  width: 23%;
+}
+main article > div:first-child h3 {
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+main article > div:first-child span {
+  font-size: 0.8rem;
+  background-color: var(--grey);
+  padding: 0.3rem 0.5rem;
+  border-radius: 0.4rem;
+}
+main article > div:first-child > button {
+  background-color: var(--grey);
+  width: 100%;
+  border: none;
+  font-size: 1.4rem;
+  background-color: var(--light-grey);
+  color: #1a202c94;
+  cursor: pointer;
+  border-radius: 0.4rem;
+}
+main article > div:first-child > button:hover {
+  transition: all 0.5s ease;
+  background-color: #e9ecef;
+}
+main article > .tasks {
+  margin-top: 0.5rem;
+  height: 500px;
+  overflow-y: auto;
+  background-color: #f7fafc;
+  box-shadow: 0px 1px 2px 0px #eae9e9;
+  padding: 1rem 0;
+  border-radius: 0.4rem;
+}
+main article > .tasks > .task {
+  background-color: var(--light-blue);
+  width: 90%;
+  margin: auto;
+  padding: 1rem;
+  border-radius: 0.7rem;
+  font-size: 14px;
+  box-shadow: 2px 2px 5px -4px #8e8989;
+  margin-bottom: 0.5rem;
+  cursor: move;
+}
+/* main article > .tasks > .task:active {
+  cursor: grab;
+} */
+.tasks > .task > .card-setting {
+  display: flex;
+  justify-content: space-between;
+}
+.tasks > .task > .card-setting > img {
+  cursor: pointer;
+  width: 1rem;
+}
+.tasks > .task > .card-setting > ul {
+  display: flex;
+  list-style: none;
+}
+.tasks > .task > .card-setting > ul li{
+  width: .9rem;
+  height: .9rem;
+  background-color: #fdcb6e;
+  margin: 0 .2rem;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.tasks > .task > p {
+  cursor: text;
+}
+.tasks > .task > p:focus {
+  padding: 0.5rem 0.4rem;
+  outline: 1px solid #00000036;
+  border-radius: 0.3rem;
+}
+/* hide setting card until hovering above task card */
+.tasks > .task .card-setting {
+  height: 0;
+  opacity: 0;
+  margin-bottom: 0;
+}
+.tasks > .task:hover > .card-setting{
+  transition: all .2s ease-in;
+  height: auto;
+  opacity: 1;
+  margin-bottom: 0.7rem;
+
+}
+/* start TODO section */
+#TODO h3 span {
+  background-color: var(--grey);
+}
+/* end TODO section */
+
+/* start in progress section */
+#IN_PROGRESS h3 span {
+  background-color: var(--light-blue);
+  color: var(--blue);
+}
+/* end in progress section */
+
+/* start TODO section */
+#TESTING h3 span {
+  background-color: var(--light-orange);
+  color: var(--orange);
+}
+/* end TODO section */
+
+/* start COMPLETED section */
+#COMPLETED h3 span {
+  background-color: var(--light-green);
+  color: var(--green);
+}
+/* end COMPLETED section */
+
+
