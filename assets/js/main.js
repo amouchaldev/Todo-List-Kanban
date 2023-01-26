@@ -20,19 +20,34 @@ let myTasks = JSON.parse(localStorage.getItem('myTasks')) || {
     'TESTING': [],
     'COMPLETED': []
 }
+// get my tasks to document 
+for (const property in myTasks) {
+    myTasks[property].forEach(task => {
+        switch(property) {
+            case TODO:
+                // console.log(section)
+                TODO_TASKS.innerHTML = TODO_TASKS.innerHTML + taskCard(task.id, task.content, task.background)
+            break;
+            case IN_PROGRESS:
+                // console.log('in progress')
+                IN_PROGRESS_TASKS.innerHTML = IN_PROGRESS_TASKS.innerHTML + taskCard(task.id, task.content, task.background)
 
-function getTasks(container, tasks) {
-    tasks.forEach(task => {
-        container.innerHTML = container.innerHTML + taskCard(task.id, task.content, task.background)
-    })
-    // changeTaskBg()
-    dragTask()
+            break;
+            case TESTING:
+                // console.log('testing')
+               TESTING_TASKS.innerHTML =TESTING_TASKS.innerHTML + taskCard(task.id, task.content, task.background)
+
+            break;
+            case COMPLETED:
+                // console.log('completed')
+                COMPLETED_TASKS.innerHTML = COMPLETED_TASKS.innerHTML + taskCard(task.id, task.content, task.background)
+            break;
+            default:
+                console.error('SOMETHING WRONG !')
+        }
+    });
 }
-
-getTasks(TODO_TASKS, myTasks[TODO])
-getTasks(IN_PROGRESS_TASKS, myTasks[IN_PROGRESS])
-getTasks(TESTING_TASKS, myTasks[TESTING])
-getTasks(COMPLETED_TASKS, myTasks[COMPLETED])
+// dragTask()
 
 function dragTask() {
     const TASKS = doc.querySelectorAll('.tasks .task')    
@@ -180,10 +195,9 @@ addCompletedBtn.addEventListener('click', function () {
 })
 
 dragTask()
-let i = 1
 
 function taskCard(id, content, bg) {
-    return  `<div class="task" draggable="true" data-id="${id}" style="background-image: ${bg}">  
+    return  `<div class="task" draggable="true" data-id="${id}" ${ bg ? `style="background-image:${bg};"` : '' }>  
     <div class="card-setting">
         <ul>
             <li></li>
@@ -205,7 +219,7 @@ function addTask(status, target) {
     const TASK = {
         id: generateTaskId(status),
         content: 'New Todo Task',
-        background: 'linear-gradient(to top, #accbee 0%, #e7f0fd 100%)' // background by default
+        background: localStorage.getItem('taskBgByDefault') || null // background by default from css
     }
     myTasks[status].unshift(TASK)
     target.parentElement.nextElementSibling.innerHTML = taskCard(TASK.id, TASK.content, TASK.background) + target.parentElement.nextElementSibling.innerHTML
@@ -226,7 +240,7 @@ function changeElementPosition(arr, fromIndex, toIndex) {
 }
 
 
-// change color of task
+// change background of task
 function changeTaskBg(e) {
    if (e.target.tagName != 'LI') return
     const bg = getComputedStyle(e.target).getPropertyValue('background-image')

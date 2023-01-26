@@ -25,6 +25,13 @@ body {
   padding-bottom: 4rem;
   background-image: linear-gradient(-20deg, #00cdac 0%, #8ddad5 100%);
 }
+body::-webkit-scrollbar {
+  width: 0.8rem;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+}
 main {
   width: 90%;
   margin: auto;
@@ -83,8 +90,20 @@ main article > .tasks {
   padding: 1rem 0;
   border-radius: 0.4rem;
 }
+main article > .tasks::-webkit-scrollbar {
+  width: .4rem;
+}
+
+ 
+main article > .tasks::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+
+}
+
+
 main article > .tasks > .task {
-  background-color: var(--light-blue);
+  background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
   width: 90%;
   margin: auto;
   padding: 1rem;
