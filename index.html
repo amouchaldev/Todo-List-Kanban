@@ -24,9 +24,7 @@
     <link rel="stylesheet" href="./assets/css/style.css">
     <!-- media query css -->
     <link rel="stylesheet" href="./assets/css/media-query.css">
-    <!-- font awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Document</title>
+    <title>KANBAN TODO LIST</title>
 </head>
 <body>
     <main>
@@ -35,7 +33,7 @@
                 <article id="TODO">
                     <div>
                         <h3><span>TODO</span></h3>
-                        <button class="plus-btn"><i class="fa-solid fa-plus"></i></button>
+                        <button><span class="plus-icon">+</span></button>
                     </div>
                     <div class="tasks">
                         <!-- TASK HERE -->
@@ -44,7 +42,7 @@
                 <article id="IN_PROGRESS">
                     <div>
                         <h3><span>IN PROGRESS</span></h3>
-                        <button class="plus-btn"><i class="fa-solid fa-plus"></i></button>
+                        <button><span class="plus-icon">+</span></button>
                     </button>
                     </div>
                     <div class="tasks">
@@ -54,7 +52,7 @@
                 <article id="TESTING">
                     <div>
                         <h3><span>TESTING</span></h3>
-                        <button class="plus-btn"><i class="fa-solid fa-plus"></i></button>
+                        <button><span class="plus-icon">+</span></button>
                     </div>
                     <div class="tasks">
                         <!-- TASK HERE -->
@@ -63,7 +61,7 @@
                 <article id="COMPLETED">
                     <div>
                         <h3><span>COMPLETED</span></h3>
-                        <button><i class="fa-solid fa-plus"></i></button>
+                        <button><span class="plus-icon">+</span></button>
                     </div>
                     <div class="tasks">
                         <!-- TASK HERE -->
@@ -77,12 +75,12 @@
             <ul>
                 <li style="background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);"></li>
                 <li style="background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);"></li>
-                <li style="background: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0.15) 100%), radial-gradient(at top center, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.40) 120%) #989898;
-                background-blend-mode: multiply,multiply;"></li>
+                <li style="background-image: linear-gradient(to top, #f43b47 0%, #453a94 100%);"></li>
                 <li style="background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);"></li>
                 <li style="background-image: linear-gradient(to top, #4481eb 0%, #04befe 100%);"></li>
                 <li style="background-image: linear-gradient(-225deg, #3D4E81 0%, #5753C9 48%, #6E7FF3 100%);"></li>
-                <li style="  background-image: linear-gradient(-20deg, #00cdac 0%, #8ddad5 100%);"></li>
+                <li style="background-image: linear-gradient(-20deg, #00cdac 0%, #8ddad5 100%);"></li>
+                <li style="background-image: linear-gradient(to right, #434343 0%, black 100%);"></li>
             </ul>
         </div>
         <div id="default-task-bg">
@@ -94,6 +92,7 @@
                 <li style="background-image: linear-gradient(to top, #feada6 0%, #f5efef 100%);"></li>
                 <li style="background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);"></li>
                 <li style="background-image: linear-gradient(to top, #4481eb 0%, #04befe 100%);"></li>
+                <li style="background-image: linear-gradient(to top, #0fd850 0%, #f9f047 100%);"></li>
             </ul>
         </div>
         <div id="default-font">
@@ -107,7 +106,7 @@
             </ul>
         </div>
         <div class="setting-btn">
-            <i class="fa-solid fa-gear"></i>
+            <img src="./assets/img/setting.svg" alt="">
         </div>
     </div>
 

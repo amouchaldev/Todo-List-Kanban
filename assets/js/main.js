@@ -1,3 +1,4 @@
+// https://github.com/amouchaldev/kanban-todo-list
 const doc = document;
 // SELECT BUTTON THAT ADD TASK
 const ADD_TODO_BTN = doc.querySelector("#TODO button"),
@@ -230,8 +231,9 @@ function taskCard(id, content, bg) {
             <li></li>
             <li></li>
             <li></li>
+            <li></li>
         </ul>
-        <i class="fa-solid fa-trash-can"></i>
+        <img src='./assets/img/trash-icon.svg' alt='trash icon'/>
     </div>
     <p contenteditable="true">${content}</p>
 </div>`;
@@ -285,7 +287,7 @@ function changeTaskBg(e) {
 }
 // function delete task function
 function deleteTask(e) {
-  if (e.target.tagName != "I") return;
+  if (e.target.tagName != "IMG") return;
   const clickedTask = e.target.parentElement.parentElement;
   const currentSection = clickedTask.parentElement.parentElement.id;
   // console.log('c: ', clickedTask)
@@ -321,6 +323,12 @@ function setDefaultStyles() {
     ? (document.body.style.backgroundImage =
         localStorage.getItem("defaultBodyBg"))
     : "";
+  localStorage.getItem("defaultBodyBg") ==
+  "linear-gradient(to right, rgb(67, 67, 67) 0%, rgb(0, 0, 0) 100%)"
+    ? TASKS_SECTION.forEach(
+        (section) => (section.style.backgroundColor = "transparent")
+      )
+    : "";
   !!localStorage.getItem("defaultFontFamily")
     ? (document.body.style.fontFamily =
         localStorage.getItem("defaultFontFamily"))
@@ -333,8 +341,8 @@ const SIDE_BAR = doc.getElementById("sidebar");
 SIDE_BAR.querySelector(".setting-btn").addEventListener("click", function () {
   this.parentElement.classList.toggle("show");
   this.parentElement.classList.contains("show")
-    ? this.querySelector("i").classList.add("fa-spin")
-    : this.querySelector("i").classList.remove("fa-spin");
+    ? this.querySelector("img").classList.add("fa-spin")
+    : this.querySelector("img").classList.remove("fa-spin");
 });
 // change default body background color
 SIDE_BAR.querySelectorAll("#default-bg li").forEach((bg) => {
@@ -342,6 +350,14 @@ SIDE_BAR.querySelectorAll("#default-bg li").forEach((bg) => {
     // console.log()
     const BACKGROUND =
       getComputedStyle(this).getPropertyValue("background-image");
+    BACKGROUND ==
+    "linear-gradient(to right, rgb(67, 67, 67) 0%, rgb(0, 0, 0) 100%)"
+      ? TASKS_SECTION.forEach(
+          (section) => (section.style.backgroundColor = "transparent")
+        )
+      : TASKS_SECTION.forEach(
+          (section) => (section.style.backgroundColor = "#fff")
+        );
     document.body.style.backgroundImage = BACKGROUND;
     localStorage.setItem("defaultBodyBg", BACKGROUND);
   });

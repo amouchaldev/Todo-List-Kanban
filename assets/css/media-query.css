@@ -26,7 +26,7 @@
     ##Device = Tablets, Ipads (landscape)
   */
   
-  @media (max-width: 1024px) and (orientation: landscape) {
+  @media (min-width: 670px) and (max-width: 1024px) and (orientation: landscape) {
     
     main article {
       width: 48%;
@@ -43,14 +43,17 @@
     ##Device = Most of the Smartphones Mobiles (Portrait)
   */
   
-  @media (max-width: 635px) {
-    
+  @media (max-width: 670px) {
+    main > h2 {
+      margin-bottom: 2rem;
+    }
     main article {
       width: 100%;
       margin-bottom: 1.5rem;
     }
     main article > .tasks {
-      height: 300px;
+      min-height: 255px;
+      height: 0;
     }
     
   }
