@@ -1,0 +1,56 @@
+
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+  
+    /* CSS */
+    
+  }
+  
+  /* 
+    ##Device = Laptops, Desktops
+  */
+  
+  @media (min-width: 1025px) and (max-width: 1280px) {
+    
+    main article {
+      width: 24%;
+    }
+    
+  }
+  
+  /* 
+    ##Device = Tablets, Ipads (landscape)
+  */
+  
+  @media (max-width: 1024px) and (orientation: landscape) {
+    
+    main article {
+      width: 48%;
+      margin-bottom: 1.5rem;
+    }
+    main article > .tasks {
+      height: 300px;
+    }
+    
+  }
+  
+
+  /* 
+    ##Device = Most of the Smartphones Mobiles (Portrait)
+  */
+  
+  @media (max-width: 635px) {
+    
+    main article {
+      width: 100%;
+      margin-bottom: 1.5rem;
+    }
+    main article > .tasks {
+      height: 300px;
+    }
+    
+  }
