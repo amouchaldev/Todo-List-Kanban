@@ -1,4 +1,3 @@
-// https://github.com/amouchaldev/kanban-todo-list
 const doc = document;
 // SELECT BUTTON THAT ADD TASK
 const ADD_TODO_BTN = doc.querySelector("#TODO button"),
@@ -22,7 +21,7 @@ const [TODO, IN_PROGRESS, TESTING, COMPLETED] = [
 let draggedElement = null;
 let draggedElementSection = null;
 // get all my tasks from localStorage if it's null create it
-let myTasks = JSON.parse(localStorage.getItem("myTasks")) || {
+let myTasks = JSON.parse(localStorage.getItem("myTasks")) ?? {
   TODO: [],
   IN_PROGRESS: [],
   TESTING: [],
@@ -241,7 +240,7 @@ function taskCard(id, content, bg) {
 
 function addTask(status, target) {
   const TASK = {
-    id: generateTaskId(status),
+    id: generateTaskId(),
     content: "New Todo Task",
     background: localStorage.getItem("taskBgByDefault") || null, // background by default from css
   };
@@ -253,10 +252,7 @@ function addTask(status, target) {
 
 // this function generate new task id
 function generateTaskId() {
-  const CURRENT_DATE = new Date();
-  return `${CURRENT_DATE.getDate()}${CURRENT_DATE.getMonth()}${CURRENT_DATE.getFullYear()}${CURRENT_DATE.getHours()}${CURRENT_DATE.getMinutes()}${CURRENT_DATE.getSeconds()}${
-    Math.floor(Math.random() * (900 - 100)) + 100
-  }`;
+  return Date.now().toString(36)
 }
 
 // function change element position in list
@@ -290,8 +286,6 @@ function deleteTask(e) {
   if (e.target.tagName != "IMG") return;
   const clickedTask = e.target.parentElement.parentElement;
   const currentSection = clickedTask.parentElement.parentElement.id;
-  // console.log('c: ', clickedTask)
-  // console.log('current: ', currentSection)
   myTasks[currentSection] = myTasks[currentSection].filter(
     (task) => task.id != clickedTask.getAttribute("data-id")
   );
@@ -319,20 +313,20 @@ function updateTaskContent(e) {
 
 // function that set default styles that stored in localStorage
 function setDefaultStyles() {
-  !!localStorage.getItem("defaultBodyBg")
-    ? (document.body.style.backgroundImage =
-        localStorage.getItem("defaultBodyBg"))
-    : "";
-  localStorage.getItem("defaultBodyBg") ==
-  "linear-gradient(to right, rgb(67, 67, 67) 0%, rgb(0, 0, 0) 100%)"
-    ? TASKS_SECTION.forEach(
-        (section) => (section.style.backgroundColor = "transparent")
-      )
-    : "";
-  !!localStorage.getItem("defaultFontFamily")
-    ? (document.body.style.fontFamily =
-        localStorage.getItem("defaultFontFamily"))
-    : "";
+  if(!!localStorage.getItem("defaultBodyBg")) {
+    (document.body.style.backgroundImage =
+      localStorage.getItem("defaultBodyBg"))
+  }
+  if(localStorage.getItem("defaultBodyBg") ==
+  "linear-gradient(to right, rgb(67, 67, 67) 0%, rgb(0, 0, 0) 100%)") {
+    TASKS_SECTION.forEach(
+      (section) => (section.style.backgroundColor = "transparent")
+    )
+  }
+  if(!!localStorage.getItem("defaultFontFamily")) {
+    (document.body.style.fontFamily =
+      localStorage.getItem("defaultFontFamily"))
+  }
 }
 
 // ############ START SIDEBAR
@@ -340,9 +334,8 @@ const SIDE_BAR = doc.getElementById("sidebar");
 // show / hide sidebar
 SIDE_BAR.querySelector(".setting-btn").addEventListener("click", function () {
   this.parentElement.classList.toggle("show");
-  this.parentElement.classList.contains("show")
-    ? this.querySelector("img").classList.add("fa-spin")
-    : this.querySelector("img").classList.remove("fa-spin");
+  if(this.parentElement.classList.contains("show")) this.querySelector("img").classList.add("fa-spin")
+  else this.querySelector("img").classList.remove("fa-spin");
 });
 // change default body background color
 SIDE_BAR.querySelectorAll("#default-bg li").forEach((bg) => {
@@ -350,14 +343,16 @@ SIDE_BAR.querySelectorAll("#default-bg li").forEach((bg) => {
     // console.log()
     const BACKGROUND =
       getComputedStyle(this).getPropertyValue("background-image");
-    BACKGROUND ==
-    "linear-gradient(to right, rgb(67, 67, 67) 0%, rgb(0, 0, 0) 100%)"
-      ? TASKS_SECTION.forEach(
-          (section) => (section.style.backgroundColor = "transparent")
-        )
-      : TASKS_SECTION.forEach(
-          (section) => (section.style.backgroundColor = "#fff")
-        );
+    if(BACKGROUND == "linear-gradient(to right, rgb(67, 67, 67) 0%, rgb(0, 0, 0) 100%)") {
+      TASKS_SECTION.forEach(
+        (section) => (section.style.backgroundColor = "transparent")
+      )
+    }
+    else {
+      TASKS_SECTION.forEach(
+        (section) => (section.style.backgroundColor = "#fff")
+      );
+    }
     document.body.style.backgroundImage = BACKGROUND;
     localStorage.setItem("defaultBodyBg", BACKGROUND);
   });
@@ -365,10 +360,8 @@ SIDE_BAR.querySelectorAll("#default-bg li").forEach((bg) => {
 // change default task background color
 SIDE_BAR.querySelectorAll("#default-task-bg li").forEach((bg) => {
   bg.addEventListener("click", function () {
-    // console.log()
     const BACKGROUND =
       getComputedStyle(this).getPropertyValue("background-image");
-    // document.body.style.backgroundImage = background
     localStorage.setItem("taskBgByDefault", BACKGROUND);
   });
 });
@@ -376,12 +369,18 @@ SIDE_BAR.querySelectorAll("#default-task-bg li").forEach((bg) => {
 // change default font family
 SIDE_BAR.querySelectorAll("#default-font li").forEach((font) => {
   font.addEventListener("click", function () {
-    // console.log()
     const FONT = getComputedStyle(this).getPropertyValue("font-family");
     document.body.style.fontFamily = FONT;
     localStorage.setItem("defaultFontFamily", FONT);
   });
 });
+window.addEventListener('click', function (e) {
+  // hide sidebar whenever click outside of it
+  if (!SIDE_BAR.contains(e.target)) {
+    SIDE_BAR.classList.remove('show')
+    SIDE_BAR.querySelector('.fa-spin').classList.remove('fa-spin')
+  }
+})
 // ############ END SIDEBAR
 
 // call function that set dafault styles from localStorge

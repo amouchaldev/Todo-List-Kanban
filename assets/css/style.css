@@ -1,7 +1,10 @@
 * {
-  box-sizing: border-box;
   padding: 0;
   margin: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 :root {
@@ -42,12 +45,6 @@ main > h2 {
   margin-bottom: 4rem;
   font-size: 3.5rem;
   text-align: center;
-  /* color: transparent;
-  background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
-  background-clip: text;
-  -moz-background-clip: text;
-  -webkit-background-clip: text;
-  -ms-background-clip: text; */
   color: #fff;
 }
 
@@ -219,7 +216,6 @@ main article > .tasks > .task {
   background-color: var(--light-green);
   color: var(--green);
 }
-
 /* end COMPLETED section */
 
 /* start sidebar */
