@@ -68,6 +68,7 @@ function dragTask() {
   TASKS.forEach((task) => {
     task.addEventListener("dragstart", function (e) {
       draggedElement = this;
+      this.style.transform = 'rotate(2deg)';
       this.style.opacity = ".5";
       e.dataTransfer.setData(
         "section",
@@ -141,6 +142,7 @@ function dragTask() {
     });
     task.addEventListener("dragend", function () {
       this.style.opacity = "1";
+      this.style.transform = 'rotate(0deg)';
       // newOrderedTasksList is null until we drag task above task
       if (!!newOrderedTasksList) {
         // check if the order of tasks changed or not if it change update list
@@ -378,7 +380,7 @@ window.addEventListener('click', function (e) {
   // hide sidebar whenever click outside of it
   if (!SIDE_BAR.contains(e.target)) {
     SIDE_BAR.classList.remove('show')
-    SIDE_BAR.querySelector('.fa-spin').classList.remove('fa-spin')
+    SIDE_BAR.querySelector('img').classList.remove('fa-spin')
   }
 })
 // ############ END SIDEBAR
